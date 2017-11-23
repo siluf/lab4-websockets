@@ -66,7 +66,7 @@ public class ElizaServerTest {
 			list.wait();
 		}
 		// COMPLETE ME!!(enviamos mensaje)
-		assertEquals("What are you doing?", list.get(list.size()-1));
+		assertEquals("Please don't apologize.", list.get(list.size()-1));
 	}
 
 	@After
@@ -104,7 +104,7 @@ public class ElizaServerTest {
         public void onOpen(Session session, EndpointConfig config) {
 
 			// COMPLETE ME!!!
-			session.getAsyncRemote().sendText("Hi!!");
+			session.getAsyncRemote().sendText("sorry");
 
             session.addMessageHandler(new ElizaMessageHandlerToComplete());
         }
@@ -115,7 +115,7 @@ public class ElizaServerTest {
             public void onMessage(String message) {
                 list.add(message);
 				// COMPLETE ME!!! (si es el mensaje que hemos mandado antes avisamos)
-				if(message.equals("What are you doing?")){
+				if(message.equals("Please don't apologize.")){
 					synchronized(list){
 						list.notify();
 					}
